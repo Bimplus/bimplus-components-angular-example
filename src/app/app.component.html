@@ -1,0 +1,53 @@
+<!-- bimplus navbar is container for other components -->
+<bimplus-navbar 
+  team-info="Bimplus demo team" 
+  project-info="Quickstart project" 
+  is-dev 
+  is-navbar-menu-visible
+  [attr.is-touch] = "isTouchMode"
+
+  (bimplusNavbarClicked)="onBimplusNavbarClicked($event)"
+  >
+
+<!-- storage info component -->
+<bimplus-storage-info 
+  [attr.selected-language]="selectedLanguage" 
+  used-storage="80"
+  (bimplusStorageInfoClicked) = "onBimplusStorageInfoClicked()"
+  ></bimplus-storage-info>
+
+<!-- contact component -->
+<bimplus-contact></bimplus-contact>
+
+<!-- touch menu component -->
+<bimplus-touch-menu 
+  selected-mode="desktop" 
+  (bimplusTouchModeSelected)="onBimplusTouchModeSelected($event)"
+  [attr.selected-mode] = "touchMode"
+  ></bimplus-touch-menu>
+
+<!-- language menu component -->
+<bimplus-language-menu [attr.selected-language]="selectedLanguage" (bimplusLanguageSelected)="onBimplusLanguageSelected($event)" ></bimplus-language-menu>
+
+<!-- user menu component -->
+<bimplus-user-menu 
+  user-name="Demo user" 
+  [attr.is-touch] = "isTouchMode"
+  (bimplusUserMenuClicked) = "onBimplusUserMenuClicked($event)"
+></bimplus-user-menu>
+
+</bimplus-navbar>
+
+<!-- bimplus main menu component -->
+<bimplus-main-menu 
+  [attr.selected-language]="selectedLanguage"
+  [class.hidden]="isMainMenuVisible"
+  project-name="00 Quickstart project"  
+  project-image-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMS36RRWYaTysG471mlormL1bYN3-QIabbo30rDitKRoaDs3EA&s" 
+  is-dev
+  show-overlay = false
+  is-collapsed = false
+  [attr.is-touch] = "isTouchMode"
+  (bimplusMainMenuClicked) = "onBimplusMainMenuClicked($event)"
+>
+</bimplus-main-menu>
