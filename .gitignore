@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/.angular/cache/
 
 # dependencies
 /node_modules
@@ -29,6 +30,7 @@
 /connect.lock
 /coverage
 /libpeerconnection.log
+/node_modules
 npm-debug.log
 yarn-error.log
 testem.log
