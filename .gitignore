@@ -39,3 +39,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Cypress downloads folder
+/cypress/downloads/
+/cypress/videos/
+/cypress/screenshots/
+/cypress/coverage/

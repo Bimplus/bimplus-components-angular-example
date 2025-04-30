@@ -1,55 +1,60 @@
-<!-- bimplus navbar is container for other components -->
-<lib-bimplus-navbar 
-  teamInfo = "Bimplus demo team" 
-  projectInfo = "Angular Test Example Project" 
-  isDev = "true" 
-  teamInfoOffset = "0.9rem"
-  isNavbarMenuVisible = "true"
-  [isNavbarMenuActive] = "isMainMenuVisible"
-  [isTouch] = "isTouchMode"
+<lib-bimplus-navbar
+  teamInfo="Bimplus demo team"
+  projectInfo="Angular Test Example Project"
+  isDev="true"
+  teamInfoOffset="0.9rem"
+  isNavbarMenuVisible="true"
+  [isNavbarMenuActive]="isMainMenuVisible"
+  [isTouch]="isTouchMode"
   (bimplusNavbarClicked)="onBimplusNavbarClicked($event)"
-  >
+>
+  <div class="messages" #messagesDiv>
+    <button id="error-button" #errorButton>Error</button>
+    <button id="warning-button" #warningButton>Warning</button>
+    <button id="confirm-button" #confirmButton>Confirm</button>
+    <button id="delete-button" #deleteButton>Delete</button>
+  </div>
 
   <!-- contact component -->
   <lib-bimplus-contact></lib-bimplus-contact>
 
   <!-- touch menu component -->
-  <lib-bimplus-touch-menu 
-    selectedMode="desktop" 
+  <lib-bimplus-touch-menu
+    selectedMode="desktop"
     (bimplusTouchModeSelected)="onBimplusTouchModeSelected($event)"
-    [attr.selectedMode] = "touchMode"
-    ></lib-bimplus-touch-menu>
+    [attr.selectedMode]="touchMode"
+  ></lib-bimplus-touch-menu>
 
   <!-- language menu component -->
   <lib-bimplus-language-menu
-    [selectedLanguage] = "languageStringsService.currentLanguage"
+    [selectedLanguage]="languageStringsService.currentLanguage"
     (bimplusLanguageSelected)="onBimplusLanguageSelected($event)"
   ></lib-bimplus-language-menu>
 
   <!-- user menu component -->
-  <lib-bimplus-user-menu 
-    userName = "Demo user"
+  <lib-bimplus-user-menu
+    userName="Demo user"
     userPhotoUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMS36RRWYaTysG471mlormL1bYN3-QIabbo30rDitKRoaDs3EA&s"
-    [selectedLanguage] = "languageStringsService.currentLanguage"
-    [localizedStrings] = "languageStringsService.currentLanguageStrings"
-    [isTouch] = "isTouchMode"
-    (bimplusUserMenuClicked) = "onBimplusUserMenuClicked($event)"
-    (bimplusLanguageSelected) = "onBimplusLanguageSelected($event)"
+    [selectedLanguage]="languageStringsService.currentLanguage"
+    [localizedStrings]="languageStringsService.currentLanguageStrings"
+    [isTouch]="isTouchMode"
+    (bimplusUserMenuClicked)="onBimplusUserMenuClicked($event)"
+    (bimplusLanguageSelected)="onBimplusLanguageSelected($event)"
   ></lib-bimplus-user-menu>
+</lib-bimplus-navbar>
 
-  </lib-bimplus-navbar>
-
-  <!-- bimplus main menu component -->
-  <lib-bimplus-main-menu 
-    *ngIf = "isMainMenuVisible"
-    [selectedLanguage] = "languageStringsService.currentLanguage"
-    [localizedStrings] = "languageStringsService.currentLanguageStrings"
-    projectName = "00 Quickstart project"  
-    projectImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMS36RRWYaTysG471mlormL1bYN3-QIabbo30rDitKRoaDs3EA&s" 
-    isDev = "true"
-    showOverlay = "false"
-    isCollapsed = "false"
-    [isTouch] = "isTouchMode"
-    (bimplusMainMenuClicked) = "onBimplusMainMenuClicked($event)"
-  >
+<lib-bimplus-main-menu
+  *ngIf="isMainMenuVisible"
+  [selectedLanguage]="languageStringsService.currentLanguage"
+  [localizedStrings]="languageStringsService.currentLanguageStrings"
+  projectName="00 Quickstart project"
+  projectImageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMS36RRWYaTysG471mlormL1bYN3-QIabbo30rDitKRoaDs3EA&s"
+  isDev="true"
+  showOverlay="false"
+  isCollapsed="false"
+  [isTouch]="isTouchMode"
+  (bimplusMainMenuClicked)="onBimplusMainMenuClicked($event)"
+>
 </lib-bimplus-main-menu>
+
+<app-viewer class="viewer-wrapper" *ngIf="isViewerAppVisible"></app-viewer>

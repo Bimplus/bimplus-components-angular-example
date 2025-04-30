@@ -1,0 +1,43 @@
+<lib-bimplus-tool-hub
+  [selectedLanguage]="languageStringsService.currentLanguage"
+  [localizedStrings]="languageStringsService.currentLanguageStrings"
+  [itemStates]="itemStates"
+  (itemClicked)="toolHubItemClicked($event)"
+  (subItemClicked)="toolHubSubItemClicked($event)"
+></lib-bimplus-tool-hub>
+
+@if(isFloatingBarProjectNavigatorVisible) {
+<lib-bimplus-floating-bar-project-navigator
+  [selectedLanguage]="languageStringsService.currentLanguage"
+  [localizedStrings]="languageStringsService.currentLanguageStrings"
+  [isPanelToolbarVisible]="isPanelToolbarVisible"
+  [project]="project"
+  [expandedModelTree]="expandedModelTree"
+  [noModelsMessage]="'_No valid models available'"
+  [loadingDataMessage]="'_Loading project details'"
+  (toggleOpacityOfModel)="toggleOpacityOfModel($event)"
+  (toggleOpacityOfLayer)="toggleOpacityOfLayer($event)"
+  (toggleVisibilityOfModel)="toggleVisibilityOfModel($event)"
+  (toggleVisibilityOfLayer)="toggleVisibilityOfLayer($event)"
+></lib-bimplus-floating-bar-project-navigator>
+}
+
+@if(isFloatingBarHideObjectsVisible) {
+<lib-bimplus-floating-bar-hide-objects
+  [selectedLanguage]="languageStringsService.currentLanguage"
+  [localizedStrings]="languageStringsService.currentLanguageStrings"
+  [items]="hideObjectsFloatingBarItems"
+  (actionClicked)="hideObjectsActionClicked($event)"
+></lib-bimplus-floating-bar-hide-objects>
+}
+
+@if(isFloatingBarIsolationObjectsVisible) {
+<lib-bimplus-floating-bar-isolation-objects
+  [selectedLanguage]="languageStringsService.currentLanguage"
+  [localizedStrings]="languageStringsService.currentLanguageStrings"
+  [items]="isolationObjectFloatingBarItems"
+  (actionClicked)="isolateObjectsActionClicked($event)"
+></lib-bimplus-floating-bar-isolation-objects>
+}
+
+<app-left-sidenav [projectId]="projectId"></app-left-sidenav>

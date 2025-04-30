@@ -1,0 +1,39 @@
+<lib-bimplus-sidenav
+  [items]="sidenavItems"
+  [actionItems]="sidenavActionItems"
+  [footerItem]="null"
+  (activeItemChanged)="activeSidenavItemChanged($event)"
+  (actionClicked)="sidenavActionClicked($event)"
+  (footerClicked)="sidenavFooterClicked($event)"
+  [localizedStrings]="languageStringsService.currentLanguageStrings"
+  [selectedLanguage]="languageStringsService.currentLanguage"
+>
+  <div class="left-sidenav-content">
+    @switch(activeSidenavItem){
+      @case("DesignConnections"){
+        <app-connection-designer></app-connection-designer>
+      }
+      @default{
+        <lib-bimplus-object-navigator
+          [hideFilterContextMenu]="hideFilterContextMenu"
+          [filterContextMenu]="filterContextMenu"
+          [api]= "null"
+          [projectId]="projectId"
+          [filterTypes]="objectNavigatorService.availableFilterTypes"
+          [localizedStrings]="languageStringsService.currentLanguageStrings"
+          [selectedLanguage]="languageStringsService.currentLanguage"
+          [selectedObjectId]="objectNavigatorService.selectedObjectId"
+          [selectedRevision]="objectNavigatorService.selectedRevision"
+          [selectedObjects]="objectNavigatorService.selectedObjects"
+          [selectionObject]="objectNavigatorService.exportObject"
+          (filterResultObjectSelectionChanged)="objectNavigatorService.handleFilterResultObjectSelectionChanged($event)"
+          (filterResultObjectDoubleClicked)="objectNavigatorService.handleFilterResultObjectDoubleClicked($event)"
+          (filterResultObjectMouseEntered)="objectNavigatorService.handleFilterResultObjectMouseEntered($event)"
+          (filterResultObjectMouseLeft)="objectNavigatorService.handleFilterResultObjectMouseLeft()"
+          (pipetteActiveStatus)="objectNavigatorService.handlePipetteActiveStatus($event)"
+        >
+        </lib-bimplus-object-navigator>
+      }
+    }
+  </div>
+</lib-bimplus-sidenav>

@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "strict": true,
     "esModuleInterop": true,
     "declaration": false,
     "experimentalDecorators": true,
@@ -16,5 +17,18 @@
       "ES2022",
       "dom"
     ]
-  }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  // Using Cypress with Typescript in Angular application causes type conflict 
+  // between Mocha/Chai and Jasmine.
+  // Property 'toBe' does not exist on type 'Assertion'.ts(2339)
+  // https://github.com/cypress-io/cypress/issues/7552
+  "include": [
+    "src",
+  ],
 }

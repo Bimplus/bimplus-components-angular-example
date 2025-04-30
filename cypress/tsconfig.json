@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "../tsconfig.json",
+  ],
+  "include": [
+    "**/*.ts",
+    "cypress/support/index.d.ts",
+  ],
+  // "exclude": [],
+  "files": [
+    "../cypress.config.ts"
+  ],
+  // "compilerOptions": {
+  //   "sourceMap": false,
+  //   // typeRoots: Specifies directories to search for type definitions
+  //   "typeRoots": [
+  //     "../node_modules/@types",
+  //     "../node_modules/cypress",
+  //     "../node_modules/@testing-library/cypress",
+  //   ],
+  //   // types: Specifies exact type definition packages to include.
+  //   "types": [
+  //     // "cypress",
+  //     // "jasmine",
+  //     // "@testing-library/cypress",
+  //   ]
+  // }
+}

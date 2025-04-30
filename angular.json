@@ -5,11 +5,11 @@
   "cli": {
     "analytics": false,
     "cache": {
-      "enabled": false
+      "enabled": true
     }
   },
   "projects": {
-    "angular": {
+    "bimplus-components-angular-example": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -60,28 +60,38 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "9mb",
+                  "maximumError": "10mb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "namedChunks": true,
+              "aot": false
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "angular:build"
+            "buildTarget": "bimplus-components-angular-example:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "angular:build:production"
+              "buildTarget": "bimplus-components-angular-example:build:production"
+            },
+            "development": {
+              "buildTarget": "bimplus-components-angular-example:build:development"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angular:build"
+            "buildTarget": "bimplus-components-angular-example:build"
           }
         },
         "test": {
@@ -94,31 +104,6 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.less"],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
-          }
-        }
-      }
-    },
-    "angular-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "angular:serve:production"
-            }
           }
         },
         "lint": {

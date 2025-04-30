@@ -22,6 +22,24 @@
       "files": ["*.html"],
       "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
+    },
+    {
+      "files": [
+        "**/*.spec.ts"
+      ],
+      "extends": [
+        "plugin:jasmine/recommended"
+      ],
+      "env": {
+        "jasmine": true
+      },
+      "plugins": [
+        "jasmine"
+      ],
+      "rules": {
+        // Jasmine-specific rules
+        "jasmine/no-disabled-tests": "off"
+      }
     }
   ]
 }

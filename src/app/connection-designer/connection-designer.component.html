@@ -1,0 +1,36 @@
+<lib-bimplus-connection-designer
+  (designCodeChanged)="designCodeChanged($event)"
+  (startCalculationClicked)="startCalculationClicked()"
+  [calculationCanBeStarted]="calculationCanBeStarted"
+  [localizedStrings]="languageStringsService.currentLanguageStrings"
+  [selectedLanguage]="languageStringsService.currentLanguage"
+>
+  <lib-bimplus-connection-designer-results
+    [localizedStrings]="languageStringsService.currentLanguageStrings"
+    [selectedLanguage]="languageStringsService.currentLanguage"
+
+    (toggleVisibilityResultsRoot)="toggleVisibilityResultsRoot($event)"
+    (toggleVisibilityResultList)="toggleVisibilityResultList($event)"
+    (toggleVisibilityResult)="toggleVisibilityResult($event)"
+
+    (clickedResultsRoot)="clickedResultsRoot($event)"
+    (clickedResultList)="clickedResultList($event)"
+    (clickedResult)="clickedResult($event)"
+
+    (doubleClickedResultsRoot)="doubleClickedResultsRoot($event)"
+    (doubleClickedResultList)="doubleClickedResultList($event)"
+    (doubleClickedResult)="doubleClickedResult($event)"
+
+    (mouseEnteredResult)="mouseEnteredResult($event)"
+    (mouseLeftResult)="mouseLeftResult()"
+
+    (doneClicked)="doneClicked()"
+
+    [results]="results"
+    [expandedTreeRoot]="expandedTreeRoot"
+    [expandedResultTrees]="expandedResultTrees"
+
+    [errorMessage]="errorMessage"
+  >
+  </lib-bimplus-connection-designer-results>
+</lib-bimplus-connection-designer>

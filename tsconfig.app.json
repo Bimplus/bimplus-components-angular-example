@@ -7,8 +7,11 @@
   "files": [
     "src/main.ts",
   ],
+  "include": [
+    "src/**/*.d.ts"
+  ],  
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    // "**/*.spec.ts"
   ]
 }
