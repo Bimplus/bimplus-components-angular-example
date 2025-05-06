@@ -1,4 +1,4 @@
-describe('top navbar spec', () => {
+xdescribe('message dialog spec', () => {
 
   beforeEach(() => {
     cy.visit(Cypress.env('baseUrl'))

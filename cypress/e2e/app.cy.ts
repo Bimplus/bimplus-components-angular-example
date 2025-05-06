@@ -1,4 +1,4 @@
-describe('template spec', () => {
+describe('application spec', () => {
 
   beforeEach(() => {
     cy.visit(Cypress.env('baseUrl'));

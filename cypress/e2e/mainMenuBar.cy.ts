@@ -1,4 +1,4 @@
-describe('side navbar spec', () => {
+describe('main menu navbar spec', () => {
 
   beforeEach(() => {
     cy.visit(Cypress.env('baseUrl'))

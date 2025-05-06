@@ -1,4 +1,4 @@
-describe('side navbar spec', () => {
+describe('main menu spec', () => {
 
   const appItems = [
     { id: 'portalBimUsers', label: 'Members', iconClass: 'bim-mm-icon-users' },

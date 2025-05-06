@@ -6,6 +6,9 @@ declare namespace Cypress {
     // Add typescript declarations for @testing-library/cypress
     findByText(arg1: string): Chainable<Element>;
 
+    // Disable animations 
+    disableAnimations(): Chainable<Element>;
+
     // Application commands
     isAppVisible(): Chainable<Element>;
     isTopNavbarVisible(): Chainable<Element>;
