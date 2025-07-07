@@ -15,9 +15,12 @@ describe('main menu navbar spec', () => {
     cy.get("lib-bimplus-navbar")
       .as('navbar');
 
-    // Initial state should be closed
+    // Initially, the main menu should be visible
+    cy.isMainMenuVisible();
     cy.get('@navbar')
-      .should('have.attr', 'ng-reflect-is-navbar-menu-active', 'true');
+      .shadow()
+      .find('.bimplus-navbar-menu')
+      .should('have.class', 'active');
 
     // Click hamburger icon to open
     cy.get('@navbar')
@@ -25,19 +28,23 @@ describe('main menu navbar spec', () => {
       .find('.bimplus-navbar-menu')
       .click();
 
-    // Assert it's open
+    // Now it's hidden
     cy.get('@navbar')
-      .should('have.attr', 'ng-reflect-is-navbar-menu-active', 'false');
+      .shadow()
+      .find('.bimplus-navbar-menu')
+      .should('not.have.class', 'active');
 
-    // Click again to close
+    // Click again to reopen
     cy.get('@navbar')
       .shadow()
       .find('.bimplus-navbar-menu')
       .click();
 
-    // Assert it's closed
+    // Now it's shown again
     cy.get('@navbar')
-      .should('have.attr', 'ng-reflect-is-navbar-menu-active', 'true');
+      .shadow()
+      .find('.bimplus-navbar-menu')
+      .should('have.class', 'active');
   });
 
   it('should display the Open project item with correct icon and label', () => {
@@ -60,8 +67,10 @@ describe('main menu navbar spec', () => {
 
   it('displays correct project name and image', () => {
     cy.get('lib-bimplus-main-menu')
-      .should('have.attr', 'ng-reflect-project-name', '00 Quickstart project')
-      .and('have.attr', 'ng-reflect-project-image-url')
+      // .should('have.attr', 'ng-reflect-project-name', '00 Quickstart project')
+      .should('have.attr', 'projectname', '00 Quickstart project')
+      // .and('have.attr', 'ng-reflect-project-image-url')
+      .and('have.attr', 'projectimageurl')
       .and('contain', 'https://encrypted-tbn0.gstatic');
 
     cy.get('lib-bimplus-main-menu')

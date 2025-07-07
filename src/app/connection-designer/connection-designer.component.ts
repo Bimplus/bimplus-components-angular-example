@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import {
   BimplusConnectionDesignerComponent,
   BimplusConnectionDesignerResultsComponent,
@@ -21,11 +21,8 @@ import {
   styleUrl: './connection-designer.component.less',
 })
 export class ConnectionDesignerComponent implements OnDestroy {
+  languageStringsService = inject(LanguageStringsService);
 
-  constructor(
-    public languageStringsService: LanguageStringsService
-  ) {
-  }
 
   errorMessage: string = '';
 

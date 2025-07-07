@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ConnectionDesignerComponent } from './../connection-designer/connection-designer.component';
 import {
   BimplusSidenavComponent,
@@ -22,11 +22,9 @@ import { ModuleObjectNavigatorService } from './module-object-navigator.service'
   styleUrl: './left-sidenav.component.less',
 })
 export class LeftSidenavComponent implements OnInit {
-  constructor(
-    public languageStringsService: LanguageStringsService,
-    public objectNavigatorService: ModuleObjectNavigatorService,
-  ) {
-  }
+  languageStringsService = inject(LanguageStringsService);
+  objectNavigatorService = inject(ModuleObjectNavigatorService);
+
 
   ngOnInit() {
     this.setSidenavItems();

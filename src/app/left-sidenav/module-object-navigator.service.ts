@@ -1,4 +1,4 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable, Input, inject } from '@angular/core';
 import { CursorsService, FilterType } from 'ngx-bimplus-components';
 
 const AllFilterType: FilterType = {
@@ -10,10 +10,10 @@ const AllFilterType: FilterType = {
   providedIn: 'root',
 })
 export class ModuleObjectNavigatorService {
+  private readonly cursorsService = inject(CursorsService);
 
-  constructor(
-    private readonly cursorsService: CursorsService,
-  ) {
+
+  constructor() {
     console.debug("ModuleObjectNavigatorService initialized");
   }
 

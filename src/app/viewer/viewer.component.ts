@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, HostListener, ViewChild, AfterViewInit, Inject, ElementRef } from '@angular/core';
+
+import { Component, OnInit, HostListener, ViewChild, AfterViewInit, ElementRef, DOCUMENT, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   FloatingBarItem,
@@ -29,6 +29,13 @@ import { LeftSidenavComponent } from './../left-sidenav/left-sidenav.component';
   styleUrls: ['./viewer.component.less'],
 })
 export class ViewerComponent implements OnInit, AfterViewInit {
+  private document = inject<Document>(DOCUMENT);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  languageStringsService = inject(LanguageStringsService);
+  resizeObserverService = inject(ResizeObserverService);
+  private element = inject(ElementRef);
+
 
   // Use HostListener to listen for window resize events
   @HostListener('window:resize', ['$event'])
@@ -36,14 +43,7 @@ export class ViewerComponent implements OnInit, AfterViewInit {
     alert("Window resized: " + event);
   }
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private route: ActivatedRoute,
-    private router: Router,
-    public languageStringsService: LanguageStringsService,
-    public resizeObserverService: ResizeObserverService,
-    private element: ElementRef,
-  ) {
+  constructor() {
     this.project.models = this.getModels(this.project);
   }
 

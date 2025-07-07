@@ -10,7 +10,7 @@ Cypress.Commands.add('isTopNavbarVisible', () => {
 
 Cypress.Commands.add('isMainMenuVisible', () => {
   cy.get("lib-bimplus-main-menu")
-    // .should('be.visible')
-    .should('have.attr', 'ng-reflect-is-collapsed', 'false');
+    .should('be.visible')
+    // .should('have.attr', 'ng-reflect-is-collapsed', 'false');
 });
 

@@ -1,7 +1,7 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, DOCUMENT, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
-import { CommonModule, DOCUMENT } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   BimplusContactComponent,
   BimplusLanguageMenuComponent,
@@ -20,7 +20,7 @@ import {
 } from 'ngx-bimplus-components';
 import { UnknownObject } from 'src/interfaces/unknown.object.interface';
 import { ViewerComponent } from './viewer/viewer.component';
-import { IDialogOptions } from 'ngx-bimplus-components/lib/components/bimplus-general-overlay-dialog/bimplus-general-dialog-config-settings';
+import { IDialogOptions } from 'ngx-bimplus-components';
 
 @Component({
   selector: 'app-root',
@@ -41,6 +41,11 @@ import { IDialogOptions } from 'ngx-bimplus-components/lib/components/bimplus-ge
   ],
 })
 export class AppComponent implements OnInit {
+  private readonly dialogService = inject(DialogService);
+  languageStringsService = inject(LanguageStringsService);
+  translateService = inject(TranslateService);
+  private document = inject<Document>(DOCUMENT);
+
   isTouchMode = false;
   touchMode = 'desktop';
   isMainMenuVisible = true;
@@ -49,12 +54,7 @@ export class AppComponent implements OnInit {
   isViewerAppVisible = false;
   isWarningDialogVisible = false;
 
-  constructor(
-    private readonly dialogService: DialogService,
-    public languageStringsService: LanguageStringsService,
-    public translateService: TranslateService,
-    @Inject(DOCUMENT) private document: Document
-  ) {
+  constructor() {
     this.switchLanguage("en");
     this.languageStringsService.currentLanguage$.pipe(takeUntilDestroyed()).subscribe({
       next: (language: string) => {

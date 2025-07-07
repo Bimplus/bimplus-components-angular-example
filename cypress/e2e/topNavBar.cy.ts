@@ -35,9 +35,6 @@ describe('top navbar spec', () => {
 
   it('should switch from desktop to touch and back to desktop', () => {
     cy.get('lib-bimplus-touch-menu')
-      .should('have.attr', 'ng-reflect-selected-mode', 'desktop')
-
-    cy.get('lib-bimplus-touch-menu')
       .should('have.attr', 'selectedmode', 'desktop')
 
     // 2. Click on the dropdown to open it
@@ -72,10 +69,20 @@ describe('top navbar spec', () => {
       .should('be.visible');
   });
 
-  it('should have selected language set to "en"', () => {
+  it('should mark the selected default language correctly in the language menu', () => {
+    // Open the language menu inside Shadow DOM
+    cy.get('lib-bimplus-language-menu').click();
+
+    // Assert that the 'English (UK)' language item has the 'selected' class
     cy.get('lib-bimplus-language-menu')
-      .should('have.attr', 'ng-reflect-selected-language', 'en')
-  })
+      .shadow()
+      .find('[data-test="langmenu_item_English (UK)"]')
+      .should('have.class', 'selected')
+      .and('be.visible')
+      .within(() => {
+        cy.get('span').should('contain.text', 'English (UK)');
+      });
+  });
 
   it('should show all defined languages in the language menu (shadow DOM)', () => {
     // Open the language menu inside Shadow DOM
@@ -110,6 +117,38 @@ describe('top navbar spec', () => {
         .and('be.visible')
     })
   })
+
+  it('should switch language to German and back to English (UK)', () => {
+    // Open the language menu
+    cy.get('lib-bimplus-language-menu').click();
+
+    // Select German (Deutsch)
+    cy.get('lib-bimplus-language-menu')
+      .shadow()
+      .find('[data-test="langmenu_item_Deutsch"]')
+      .click();
+
+    // Verify that "Open project" is in German
+    cy.get('lib-bimplus-main-menu')
+      .shadow()
+      .contains('Projekt öffnen') // Example: "Open project" in German
+      .should('be.visible');
+
+    // Open the language menu again
+    cy.get('lib-bimplus-language-menu').click();
+
+    // Switch back to English (UK)
+    cy.get('lib-bimplus-language-menu')
+      .shadow()
+      .find('[data-test="langmenu_item_English (UK)"]')
+      .click();
+
+    // Verify that "Open project" is back in English
+    cy.get('lib-bimplus-main-menu')
+      .shadow()
+      .contains('Open project')
+      .should('be.visible');
+  });
 
   it('has a user menu', () => {
     // Is a user menu defined ?
