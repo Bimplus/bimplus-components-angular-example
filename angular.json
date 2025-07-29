@@ -35,6 +35,11 @@
               },
               {
                 "glob": "**/*",
+                "input": "node_modules/@bimplus/navigation/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*",
                 "input": "assets/images",
                 "output": "assets/images"
               }

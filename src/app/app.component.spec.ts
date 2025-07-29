@@ -11,20 +11,22 @@ import {
   TranslateStore
 } from '@ngx-translate/core';
 import {
-  BimplusNavbarComponent,
-  BimplusUserMenuComponent,
-  BimplusMainMenuComponent,
-  BimplusLanguageMenuComponent,
-  BimplusTouchMenuComponent,
-  BimplusContactComponent,
-  LanguageStringsService,
-  LocalizedStrings,
-  MenuItemEventData,
   BimplusOverlayDialogErrorComponent,
   BimplusOverlayDialogConfirmComponent,
   BimplusOverlayDialogWarningComponent,
   BimplusOverlayDialogDeleteComponent,
 } from 'ngx-bimplus-components';
+import {
+  BimplusContactComponent,
+  BimplusLanguageMenuComponent,
+  BimplusMainMenuComponent,
+  BimplusNavbarComponent,
+  BimplusTouchMenuComponent,
+  BimplusUserMenuComponent,
+  LanguageStringsService,
+  LocalizedStrings,
+  MenuItemEventData,
+} from '@bimplus/navigation';
 import { TestSpyHelper } from 'src/test/testSpyUtils';
 import { UnknownObject } from 'src/testSpyUtils';
 
@@ -115,7 +117,7 @@ describe('AppComponent', () => {
       await component.switchLanguage('');
 
       expect(component.getBaseHref).toHaveBeenCalledWith();
-      expect(mockLanguageStringsService.languageFilesUri).toBe('/base/assets');
+      expect(mockLanguageStringsService.languageFilesUri).toBe('/base/assets/@bimplus/navigation/languages');
       expect(mockLanguageStringsService.setCurrentLanguage).toHaveBeenCalledWith('en');
       expect(localStorage.setItem).toHaveBeenCalledWith('language', 'en');
     });

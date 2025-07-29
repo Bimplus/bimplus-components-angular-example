@@ -17,7 +17,7 @@ export class ModuleObjectNavigatorService {
     console.debug("ModuleObjectNavigatorService initialized");
   }
 
-  private _availableFilterTypes: Array<FilterType> = [AllFilterType];
+  private readonly _availableFilterTypes: Array<FilterType> = [AllFilterType];
   get availableFilterTypes(): Array<FilterType> {
     return this._availableFilterTypes;
   }

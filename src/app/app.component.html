@@ -21,6 +21,8 @@
   <!-- touch menu component -->
   <lib-bimplus-touch-menu
     selectedMode="desktop"
+    [selectedLanguage]="languageStringsService.currentLanguage"
+    [localizedStrings]="languageStringsService.currentLanguageStrings"
     (bimplusTouchModeSelected)="onBimplusTouchModeSelected($event)"
     [attr.selectedMode]="touchMode"
   ></lib-bimplus-touch-menu>

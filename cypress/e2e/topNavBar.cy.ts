@@ -25,7 +25,7 @@ describe('top navbar spec', () => {
     cy.get("lib-bimplus-contact")
       .shadow()
       .find('.bimplus-contact-link')
-      .should('have.attr', 'href', 'https://www.allplan.com/info/contact');
+      .should('have.attr', 'href', 'https://connect.allplan.com/support/contact.ct?SSO=1&autolang');
   })
 
   it('has a touch menu', () => {
@@ -40,11 +40,11 @@ describe('top navbar spec', () => {
     // 2. Click on the dropdown to open it
     cy.get('lib-bimplus-touch-menu').click()
 
-    // 3. Click on the _Touch_Mode item
+    // 3. Click on the Touch Mode item
     cy.get("lib-bimplus-touch-menu")
       .shadow()
       .find('li.bimcomp-dropdown-menu-item')
-      .contains('_Touch_Mode')
+      .contains('Touch Mode')
       .click()
 
     cy.get('lib-bimplus-touch-menu')
@@ -53,11 +53,11 @@ describe('top navbar spec', () => {
     // 4. Click dropdown again
     cy.get('lib-bimplus-touch-menu').click()
 
-    // 5. Click back on _Desktop_Mode
+    // 5. Click back on Desktop Mode
     cy.get("lib-bimplus-touch-menu")
       .shadow()
       .find('li.bimcomp-dropdown-menu-item')
-      .contains('_Desktop_Mode')
+      .contains('Desktop Mode')
       .click()
 
     cy.get('lib-bimplus-touch-menu')
@@ -230,12 +230,12 @@ describe('top navbar spec', () => {
 
     cy.get("lib-bimplus-user-menu")
       .shadow()
-      .find('li[key="supportLink"]')
+      .find('li[key="contactFormLink"]')
       .should('exist')
       .find('a')
-      .should('have.attr', 'href', 'https://connect2.allplan.com/services/support?no_cache=1')
+      .should('have.attr', 'href', 'https://www.allplan.com/info/contact')
       .find('span.menu-item-text')
-      .should('contain.text', 'Support');  // Verify the text content
+      .should('contain.text', 'Contact form');  // Verify the text content
 
     cy.get("lib-bimplus-user-menu")
       .shadow()

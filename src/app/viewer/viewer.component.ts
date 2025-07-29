@@ -29,19 +29,18 @@ import { LeftSidenavComponent } from './../left-sidenav/left-sidenav.component';
   styleUrls: ['./viewer.component.less'],
 })
 export class ViewerComponent implements OnInit, AfterViewInit {
-  private document = inject<Document>(DOCUMENT);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly document = inject<Document>(DOCUMENT);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   languageStringsService = inject(LanguageStringsService);
   resizeObserverService = inject(ResizeObserverService);
-  private element = inject(ElementRef);
+  private readonly element = inject(ElementRef);
 
 
   // Use HostListener to listen for window resize events
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    alert("Window resized: " + event);
-  }
+    alert(`Window resized!\nEvent: ${JSON.stringify(event, null, 2)}`); }
 
   constructor() {
     this.project.models = this.getModels(this.project);
@@ -101,11 +100,13 @@ export class ViewerComponent implements OnInit, AfterViewInit {
   toolHubSubItemClicked(item: string) {
     const alertMessage = `toolHubSubItemClicked(${item})`;
     switch (item) {
-      case 'cmButFrontView': alert(alertMessage); return;
-      case 'cmButTopView': alert(alertMessage); return;
-      case 'cmButSideView': alert(alertMessage); return;
-      case 'cmButPerspectiveView': alert(alertMessage); return;
-      case 'cmButToggleProjection': alert(alertMessage); return;
+      case 'cmButFrontView':
+      case 'cmButTopView':
+      case 'cmButSideView':
+      case 'cmButPerspectiveView':
+      case 'cmButToggleProjection':
+        alert(alertMessage);
+        return;
     }
   }
 
@@ -321,7 +322,7 @@ export class ViewerComponent implements OnInit, AfterViewInit {
 
   toggleOpacityOfLayer(layer: ProjectNavigatorLayer) {
     const model = layer.parentModel;
-    if (!layer || !model || !model.layers) {
+    if (!layer || !model?.layers) {
       return;
     }
 

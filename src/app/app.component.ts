@@ -3,24 +3,26 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import {
-  BimplusContactComponent,
-  BimplusLanguageMenuComponent,
-  BimplusMainMenuComponent,
-  BimplusNavbarComponent,
   BimplusOverlayDialogConfirmComponent,
   BimplusOverlayDialogDeleteComponent,
   BimplusOverlayDialogErrorComponent,
   BimplusOverlayDialogWarningComponent,
+  DialogService,
+  IDialogOptions,
+} from 'ngx-bimplus-components';
+import {
+  BimplusContactComponent,
+  BimplusLanguageMenuComponent,
+  BimplusMainMenuComponent,
+  BimplusNavbarComponent,
   BimplusTouchMenuComponent,
   BimplusUserMenuComponent,
-  DialogService,
   LanguageStringsService,
   LocalizedStrings,
   MenuItemEventData,
-} from 'ngx-bimplus-components';
+} from '@bimplus/navigation';
 import { UnknownObject } from 'src/interfaces/unknown.object.interface';
 import { ViewerComponent } from './viewer/viewer.component';
-import { IDialogOptions } from 'ngx-bimplus-components';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +46,7 @@ export class AppComponent implements OnInit {
   private readonly dialogService = inject(DialogService);
   languageStringsService = inject(LanguageStringsService);
   translateService = inject(TranslateService);
-  private document = inject<Document>(DOCUMENT);
+  private readonly document = inject<Document>(DOCUMENT);
 
   isTouchMode = false;
   touchMode = 'desktop';
@@ -55,7 +57,6 @@ export class AppComponent implements OnInit {
   isWarningDialogVisible = false;
 
   constructor() {
-    this.switchLanguage("en");
     this.languageStringsService.currentLanguage$.pipe(takeUntilDestroyed()).subscribe({
       next: (language: string) => {
         this.updateCurrentLanguage();
@@ -72,6 +73,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.switchLanguage("en");
     this.addEventListenerForMessages();
   }
 
@@ -87,8 +89,8 @@ export class AppComponent implements OnInit {
     }
     // check if base href is used and alternate language files uri
     const baseHref = this.getBaseHref();
-    const languageFilesUri = baseHref + '/assets';
-    if (baseHref !== '' && languageFilesUri !== this.languageStringsService.languageFilesUri) {
+    const languageFilesUri = baseHref + '/assets/@bimplus/navigation/languages';
+    if (languageFilesUri !== this.languageStringsService.languageFilesUri) {
       this.languageStringsService.languageFilesUri = languageFilesUri;
     }
     await this.languageStringsService.setCurrentLanguage(lang);
@@ -116,14 +118,10 @@ export class AppComponent implements OnInit {
   * bimplus navbar clicked handler
   --------------------------------------------------------------------------*/
   onBimplusNavbarClicked(actionType: string) {
-    switch (actionType) {
-      case "menu":
-        this.isMainMenuVisible = !this.isMainMenuVisible;
-        break;
-
-      default:
-        alert(`Navbar clicked. Clicked on: ${actionType}`);
-        break;
+    if (actionType === "menu") {
+      this.isMainMenuVisible = !this.isMainMenuVisible;
+    } else {
+      alert(`Navbar clicked. Clicked on: ${actionType}`);
     }
   }
 
@@ -144,13 +142,10 @@ export class AppComponent implements OnInit {
   onBimplusMainMenuClicked(event: UnknownObject) {
 
     if (event) {
-      switch (event.action) {
-        case "bimexplorer":
-          this.isViewerAppVisible = !this.isViewerAppVisible;
-          break;
-        default:
-          alert(`EVENT : bimplusMainMenuClicked. ACTION: ${event.action} TYPE: ${event.type}`);
-          break;
+      if (event.action === "bimexplorer") {
+        this.isViewerAppVisible = !this.isViewerAppVisible;
+      } else {
+        alert(`EVENT : bimplusMainMenuClicked. ACTION: ${event.action} TYPE: ${event.type}`);
       }
     } else {
       alert(`EVENT : bimplusMainMenuClicked. Event undefined`);

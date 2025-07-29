@@ -165,7 +165,7 @@ describe('ViewerComponent', () => {
     // Dispatch a fake resize event
     window.dispatchEvent(new Event('resize'));
 
-    expect(window.alert).toHaveBeenCalledWith("Window resized: [object Event]");
+    expect(window.alert).toHaveBeenCalledWith("Window resized!\nEvent: {\n  \"isTrusted\": false\n}");
   });
 
   it('should alert "resetView" when cmButResetObj is clicked', () => {
