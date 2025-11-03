@@ -224,7 +224,7 @@ describe('top navbar spec', () => {
       .find('li[key="userGuideLink"]')
       .should('exist')
       .find('a')
-      .should('have.attr', 'href', 'https://doc.allplan.com/display/BIMPLUSMANUAL/Bimplus+Benutzerhandbuch')
+      .should('have.attr', 'href', 'https://bimplus-help.allplan.com/welcome.htm')
       .find('span.menu-item-text')
       .should('contain.text', 'User Guide');  // Verify the text content
 
